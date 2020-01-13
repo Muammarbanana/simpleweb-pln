@@ -65,7 +65,7 @@
                         data-ket="<?=$data->Keterangan;?>">
                         <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#hapusModal" data-no="<?=$data->Nomor_Surat;?>"><i class="fa fa-close"></i></button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#hapusModal" data-no="<?=$data->id_proyek;?>"><i class="fa fa-close"></i></button>
                 </td>
            </tr>
            @endforeach

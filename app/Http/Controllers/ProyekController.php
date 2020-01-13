@@ -14,7 +14,7 @@ class ProyekController extends Controller
 
     public function hapus($nomor_surat){
         $dec_nomor_surat = urldecode($nomor_surat);
-        DB::table('proyek')->where('Nomor_Surat',$dec_nomor_surat)->delete();
-        return view('beranda');
+        DB::table('proyek')->where('id_proyek',$dec_nomor_surat)->delete();
+        return redirect('/');
     }
 }
