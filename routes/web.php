@@ -12,5 +12,6 @@
 */
 
 Route::get('/proyek/hapus/{nomor_surat}', 'ProyekController@hapus');
+Route::post('/proyek/update', 'ProyekController@update');
 Route::get('/', 'ProyekController@index');
 Auth::routes();

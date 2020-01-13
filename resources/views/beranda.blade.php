@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="c-token" content="{!! csrf_token() !!}" />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <script src="{{ asset('js/bootstable.js') }}"></script>
@@ -55,7 +56,8 @@
                 <td>{{$data->WBS}}</td>
                 <td>{{$data->Keterangan}}</td>
                 <td>
-                    <button class="btn btn-success" data-toggle="modal" data-target="#editModal" 
+                    <button class="btn btn-success" data-toggle="modal" data-target="#editModal"
+                        data-id="<?=$data->id_proyek;?>" 
                         data-no="<?=$data->Nomor_Surat;?>" 
                         data-pk="<?=$data->Pekerjaan;?>" 
                         data-wilker="<?=$data->Wilayah_Kerja;?>" 
@@ -101,8 +103,10 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editForm">
+                <form id="editForm" action="/proyek/update" method="post">
+                    {!! csrf_field() !!}
                     <div class="modal-body">
+                            <input type="hidden" name="id">
                             <div class="form-group">
                                 <label for="editNomorSurat">Nomor Surat</label>
                                 <input name="nomor_surat" class="form-control" id="editNomorSurat">
@@ -131,7 +135,6 @@
                                 <label for="editPekerjaan">Keterangan</label>
                                 <input name="ket" class="form-control" id="editKeterangan">
                             </div>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Simpan</button>
@@ -148,6 +151,7 @@
             $(e.currentTarget).find('a[name="tombol_hapus"]').attr("href","/proyek/hapus/"+enc_data_no);
         });
         $('#editModal').on('show.bs.modal', function (e){
+            var data_id = $(e.relatedTarget).data('id')
             var data_no = $(e.relatedTarget).data('no');
             var data_pk = $(e.relatedTarget).data('pk');
             var data_wilker = $(e.relatedTarget).data('wilker'); 
@@ -155,6 +159,7 @@
             var data_tgl2 = $(e.relatedTarget).data('tgl2');
             var data_wbs = $(e.relatedTarget).data('wbs');
             var data_ket = $(e.relatedTarget).data('ket');
+            $(e.currentTarget).find('input[name="id"]').val(data_id);
             $(e.currentTarget).find('input[name="nomor_surat"]').val(data_no);
             $(e.currentTarget).find('input[name="pekerjaan"]').val(data_pk);
             $(e.currentTarget).find('input[name="wilker"]').val(data_wilker);

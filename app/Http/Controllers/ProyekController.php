@@ -17,4 +17,17 @@ class ProyekController extends Controller
         DB::table('proyek')->where('id_proyek',$dec_nomor_surat)->delete();
         return redirect('/');
     }
+
+    public function update(Request $request){
+        DB::table('proyek')->where('id_proyek',$request->id)->update([
+            'Nomor_Surat' => $request->nomor_surat,
+            'Pekerjaan' => $request->pekerjaan,
+            'Wilayah_Kerja' => $request->wilker,
+            'Tanggal_Awal' => $request->tgl1,
+            'Tanggal_Akhir' => $request->tgl2,
+            'WBS' => $request->wbs,
+            'Keterangan' => $request->ket
+        ]);
+        return redirect('/');
+    }
 }
