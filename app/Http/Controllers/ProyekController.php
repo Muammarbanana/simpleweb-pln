@@ -12,6 +12,19 @@ class ProyekController extends Controller
         return view('beranda', ['proyek' => $proyek]);
     }
 
+    public function tambah(Request $request){
+        DB::table('proyek')->insert([
+            'Nomor_Surat' => $request->nomor_surat,
+            'Pekerjaan' => $request->pekerjaan,
+            'Wilayah_Kerja' => $request->wilker,
+            'Tanggal_Awal' => $request->tgl1,
+            'Tanggal_Akhir' => $request->tgl2,
+            'WBS' => $request->wbs,
+            'Keterangan' => $request->ket
+        ]);
+        return redirect('/');
+    }
+
     public function hapus($nomor_surat){
         $dec_nomor_surat = urldecode($nomor_surat);
         DB::table('proyek')->where('id_proyek',$dec_nomor_surat)->delete();

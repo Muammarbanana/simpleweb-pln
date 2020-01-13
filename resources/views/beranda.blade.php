@@ -20,7 +20,8 @@
         .content {
             font-size:18px;
             font-family: 'Nunito';
-            margin: 2%;
+            margin-top: 2%;
+            margin-left: 2%;
         }
         .tabel {
             font-family: 'Nunito';
@@ -28,22 +29,16 @@
         }
         #tomboltambah {
             float: right;
+            margin-bottom: 1%;
+            margin-right: 2%;
         }
     </style>
     <title>Beranda</title>
 </head>
 <body>
     <div class="content">
-        <div class="container">
-            <div class="row">
-                <div>
-                    <h1>Daftar Proyek</h1>
-                </div>
-                <div id="tomboltambah">
-                    <button class="btn btn-success">Tambah Proyek</button>
-                </div>
-            </div>
-        </div>
+        <h1>Daftar Proyek</h1>
+        <button id="tomboltambah" class="btn btn-success" data-toggle="modal" data-target="#tambahModal">Tambah Proyek</button>
     </div>
     <div class="tabel">
         <table class="table" id="tabelProyek">
@@ -115,6 +110,57 @@
                     </button>
                 </div>
                 <form id="editForm" action="/proyek/update" method="post">
+                    {!! csrf_field() !!}
+                    <div class="modal-body">
+                            <input type="hidden" name="id">
+                            <div class="form-group">
+                                <label for="editNomorSurat">Nomor Surat</label>
+                                <input name="nomor_surat" class="form-control" id="editNomorSurat">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">Pekerjaan</label>
+                                <input name="pekerjaan" class="form-control" id="editPekerjaan">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">Wilayah Kerja</label>
+                                <input name="wilker" class="form-control" id="editWilker">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">Tanggal Awal</label>
+                                <input name="tgl1" class="form-control" id="editTanggalAwal" type="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">Tanggal Akhir</label>
+                                <input name="tgl2" class="form-control" id="editTanggalAkhir" type="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">WBS</label>
+                                <input name="wbs" class="form-control" id="editWBS">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPekerjaan">Keterangan</label>
+                                <input name="ket" class="form-control" id="editKeterangan">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Tambah -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="tambahModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Proyek</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="tambahForm" action="/proyek/tambah" method="post">
                     {!! csrf_field() !!}
                     <div class="modal-body">
                             <input type="hidden" name="id">
