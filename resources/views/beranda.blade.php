@@ -24,22 +24,21 @@
             font-size:18px;
             font-family: 'Nunito';
             margin-top: 2%;
-            margin-left: 2%;
+            margin-left: 1%;
         }
         .tabel {
             font-family: 'Nunito';
-            margin:2%;
+            margin: 1%;
         }
-        #tomboltambah {
-            float: right;
-            margin-right: 2%;
+        #judul {
+            margin-bottom: 2%;
         }
     </style>
     <title>Beranda</title>
 </head>
 <body>
     <div class="content">
-        <h1>Daftar Proyek</h1>
+        <h1 id="judul">Daftar Proyek</h1>
         <button id="tomboltambah" class="btn btn-success" data-toggle="modal" data-target="#tambahModal">Tambah Proyek</button>
     </div>
     <div class="tabel">
@@ -67,7 +66,7 @@
                     <td>{{$data->WBS}}</td>
                     <td>{{$data->Keterangan}}</td>
                     <td>
-                        <button class="btn btn-success" data-toggle="modal" data-target="#editModal"
+                        <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal"
                             data-id="<?=$data->id_proyek;?>" 
                             data-no="<?=$data->Nomor_Surat;?>" 
                             data-pk="<?=$data->Pekerjaan;?>" 
@@ -78,7 +77,7 @@
                             data-ket="<?=$data->Keterangan;?>">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#hapusModal" data-no="<?=$data->id_proyek;?>"><i class="fa fa-close"></i></button>
+                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusModal" data-no="<?=$data->id_proyek;?>"><i class="fa fa-close"></i></button>
                     </td>
                 </tr>
                 @endforeach
